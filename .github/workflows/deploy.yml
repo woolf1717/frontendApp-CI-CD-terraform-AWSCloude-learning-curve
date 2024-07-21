@@ -1,6 +1,6 @@
 # # <project_root>/.github/workflows/deploy.yml
 
-name: Deploy to Netlify
+name: Deploy
 
 on:
   workflow_dispatch:
@@ -12,7 +12,6 @@ on:
 
 jobs:
   app-setup:
-    if: ${{ inputs.deploy-netlify }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -31,6 +30,7 @@ jobs:
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3.0
+        if: ${{ inputs.deploy-netlify }}
         with:
           publish_dir: './dist'
           production-branch: master
