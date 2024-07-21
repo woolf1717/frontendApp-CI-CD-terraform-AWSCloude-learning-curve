@@ -32,7 +32,7 @@ jobs:
         uses: nwtgck/actions-netlify@v3.0
         if: ${{ inputs.deploy-netlify }}
         with:
-          publish_dir: './dist'
+          publish-dir: './dist'
           production-branch: master
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: 'Deployed from GitHub Actions'
