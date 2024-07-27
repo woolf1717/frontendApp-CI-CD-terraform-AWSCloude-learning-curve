@@ -37,3 +37,15 @@ jobs:
           CI: true
           E2E_BASE_URL: ${{ env.DEPLOY_URL }}
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+
+      - name: Verify Environment Variables
+        run: |
+          if [ -n "$VERCEL_AUTOMATION_BYPASS_SECRET" ]; then
+            echo "VERCEL_AUTOMATION_BYPASS_SECRET is set"
+          else
+            echo "VERCEL_AUTOMATION_BYPASS_SECRET is not set"
+          fi
+          echo "E2E_BASE_URL is: $E2E_BASE_URL"
+        env:
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+          E2E_BASE_URL: ${{ env.DEPLOY_URL }}
