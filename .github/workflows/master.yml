@@ -28,6 +28,8 @@ jobs:
 
       - name: Build project
         run: npm run build
+        env:
+          VITE_ENVIRONMENT: ${{ github.ref_name }}
 
       # - name: Deploy to S3
       #   uses: ./.github/actions/aws-s3-sync

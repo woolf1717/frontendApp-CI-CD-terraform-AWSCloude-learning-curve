@@ -1,4 +1,4 @@
-# Opanuj Frontend: AI Edition - Github Actions
+# Opanuj Frontend: AI Edition
 
 ![](./_resources/img/header.png)
 

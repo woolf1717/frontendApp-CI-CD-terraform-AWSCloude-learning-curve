@@ -1,0 +1,42 @@
+name: Pull Request
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  pr-check:
+    environment:
+      name: 'Preview'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure node
+        uses: ./.github/actions/setup-project
+
+      - name: Code Formant and Testing
+        uses: ./.github/actions/code-formant-and-testing
+
+      - name: Deploy app to Vercel preview env
+        uses: ./.github/actions/deploy-vercel
+        with:
+          mode: 'preview'
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      - name: Extract Preview URL
+        id: extract-url
+        run: echo "E2E_BASE_URL=$(vercel --token=${{ secrets.VERCEL_TOKEN }} --prod --confirm --env PRODUCTION_ENV=true | grep 'Preview URL' | awk '{print $3}')" >> $GITHUB_ENV
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      - name: E2E Tests
+        uses: ./.github/actions/e2e-tests
+        env:
+          VITE_ENVIRONMENT: ${{ github.ref_name }}
+          CI: true
+          E2E_BASE_URL: ${{ steps.deploy-preview.outputs.url }}
