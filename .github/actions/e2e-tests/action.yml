@@ -6,4 +6,5 @@ runs:
   steps:
     - name: Run E2E tests
       run: pnpm run test:e2e
+
       shell: bash
