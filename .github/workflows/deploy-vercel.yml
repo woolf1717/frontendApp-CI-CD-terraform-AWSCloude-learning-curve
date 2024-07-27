@@ -19,11 +19,8 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
 
-      - name: Lint code
-        run: pnpm run lint
-
-      - name: Run unit tests
-        run: pnpm run test
+      - name: Code Formant and Testing
+        uses: ./.github/actions/code-formant-and-testing
 
       - name: Build app
         run: pnpm run build
