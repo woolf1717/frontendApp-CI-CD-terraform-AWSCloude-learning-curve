@@ -16,14 +16,17 @@ jobs:
       - name: Configure node
         uses: ./.github/actions/setup-project
 
+      - name: Install pnpm
+        run: npm install -g pnpm
+
       - name: Lint code
-        run: npm run lint
+        run: pnpm run lint
 
       - name: Run unit tests
-        run: npm run test
+        run: pnpm run test
 
       - name: Build app
-        run: npm run build
+        run: pnpm run build
 
       - name: Deploy app to Vercel production env
         uses: ./.github/actions/deploy-vercel
