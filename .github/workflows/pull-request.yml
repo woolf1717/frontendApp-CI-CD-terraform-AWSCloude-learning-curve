@@ -1,6 +1,4 @@
-# # <project_root>/.github/workflows/deploy.yml
-
-name: Deploy
+name: Pull Request
 
 on:
   pull_request:
@@ -22,16 +20,13 @@ jobs:
       - name: Lint code
         run: npm run lint
 
-      - name: Build app
-        run: npm run build
-
-      - name: Test app
+      - name: Run unit tests
         run: npm run test
 
-      - name: Deploy app to Vercel production env
+      - name: Deploy app to Vercel preview env
         uses: ./.github/actions/deploy-vercel
         with:
-          mode: 'production'
+          mode: 'preview'
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
