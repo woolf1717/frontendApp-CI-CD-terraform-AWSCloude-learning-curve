@@ -8,7 +8,9 @@ on:
       - master
 
 jobs:
-  app-setup:
+  pr-check:
+    environment:
+      name: 'Preview'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

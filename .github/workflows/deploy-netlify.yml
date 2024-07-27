@@ -1,0 +1,9 @@
+name: Deploy - Netlify
+
+on:
+  workflow_call:
+
+jobs:
+  deploy-netlify:
+    environment:
+      name: 'Development'
