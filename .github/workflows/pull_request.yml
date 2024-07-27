@@ -1,28 +1,47 @@
-name: Pull Request Workflow
+# # <project_root>/.github/workflows/deploy.yml
+
+name: Deploy
 
 on:
   pull_request:
+    branches:
+      - main
 
 jobs:
-  verify-pr:
+  app-setup:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Configure node
         uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
 
-      - name: Install deps
+      - name: Install dependencies
         run: npm ci
 
       - name: Lint code
         run: npm run lint
 
-      - name: Run unit tests
+      - name: Build app
+        run: npm run build
+
+      - name: Test app
         run: npm run test
 
-      - name: Build project
-        run: npm run build
+  Deploy-Production:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Vercel CLI
+        run: npm install --global vercel@canary
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Install pnpm
+        run: npm install -g pnpm
+      - name: Build Project Artifacts
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
