@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import React from 'react';
+import { TechnicalComponent } from './ui/technical-component';
 
 const App = () => {
   return (
@@ -8,6 +9,7 @@ const App = () => {
         <h1 className="text-xl font-bold text-center">🚀 Hello Rick and Morty - Fan Service</h1>
       </div>
       <Outlet />
+      <TechnicalComponent />
     </div>
   );
 };
