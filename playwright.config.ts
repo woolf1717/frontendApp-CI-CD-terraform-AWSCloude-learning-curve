@@ -18,7 +18,9 @@ export default defineConfig({
   reporter: 'html',
   use: {
     baseURL: process.env.CI ? process.env.E2E_BASE_URL : 'http://localhost:3000',
-    trace: 'on-first-retry',
+    trace: 'on',
+    actionTimeout: 5000,
+    navigationTimeout: 15000,
     extraHTTPHeaders: {
       'x-vercel-protection-bypass': process.env.VERCEL_AUTOMATION_BYPASS_SECRET!,
     },
