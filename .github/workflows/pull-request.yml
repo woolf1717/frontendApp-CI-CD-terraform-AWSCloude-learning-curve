@@ -39,4 +39,4 @@ jobs:
         env:
           VITE_ENVIRONMENT: ${{ github.ref_name }}
           CI: true
-          E2E_BASE_URL: https://frontend-88fry2it1-woolf1717s-projects.vercel.app/
+          E2E_BASE_URL: ${{ env.E2E_BASE_URL }}
