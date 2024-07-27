@@ -47,9 +47,9 @@ jobs:
 
       - name: Deploy Project Artifacts to Vercel
         run: |
-          DEPLOY_OUTPUT="(vercel deploy --token=${{ secrets.VERCEL_TOKEN }})"
-          DEPLAY_URL=$(ech "$DEPLOY_OUTPUT" | grep http | tail -n 1)
-          echo "DEPLOY_ULR=$DEPLOY_URL" >> $GITHUB_ENV
+          DEPLOY_OUTPUT=$(vercel deploy --token=${{ secrets.VERCEL_TOKEN }})
+          DEPLOY_URL=$(echo "$DEPLOY_OUTPUT" | grep http | tail -n 1)
+          echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
 
       - name: Comment with deploy URL
         uses: actions/github-script@v7
