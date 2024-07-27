@@ -39,4 +39,4 @@ jobs:
         env:
           VITE_ENVIRONMENT: ${{ github.ref_name }}
           CI: true
-          E2E_BASE_URL: ${{ steps.deploy-preview.outputs.url }}
+          E2E_BASE_URL: ${{ env.E2E_BASE_URL }}
