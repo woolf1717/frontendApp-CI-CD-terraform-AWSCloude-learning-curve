@@ -21,7 +21,6 @@ runs:
       run: npm install --global pnpm
       shell: bash
 
-
     - name: PROD Vercel Deployment
       if: ${{ inputs.mode == 'production' }}
       run: |
@@ -40,7 +39,7 @@ runs:
         echo "DEPLOY_URL=${DEPLOY_URL}" >> $GITHUB_ENV
       shell: bash
 
-    -name: Comment with preview URL
+    - name: Comment with preview URL
       if: ${{ inputs.mode == 'preview' }}
       uses: actions/github-script@v7
       with:
