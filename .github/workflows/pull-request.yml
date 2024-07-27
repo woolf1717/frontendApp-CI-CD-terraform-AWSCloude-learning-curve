@@ -30,7 +30,7 @@ jobs:
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
       - name: Extract Preview URL
         id: extract-url
-        run: echo "E2E_BASE_URL=$(vercel --token=${{ secrets.VERCEL_TOKEN }} --prod --confirm --env PRODUCTION_ENV=true | grep 'Preview URL' | awk '{print $3}')" >> $GITHUB_ENV
+        run: echo "E2E_BASE_URL=$(vercel --token=${{ secrets.VERCEL_TOKEN }} --prod --yes --env PRODUCTION_ENV=true | grep 'Preview URL' | awk '{print $3}')" >> $GITHUB_ENV
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
