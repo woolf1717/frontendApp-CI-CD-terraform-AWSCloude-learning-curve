@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy-netlify:
-    uses: ./.github/actions/deploy-netlify
+    uses: ./.github/workflows/deploy-netlify.yml
     secrets: inherit
 
   deploy-vercel:
