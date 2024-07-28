@@ -5,8 +5,7 @@ on:
 
 jobs:
   deploy-vercel:
-    environment:
-    name: 'Staging'
+    environment: Staging
     runs-on: ubuntu-latest
 
     steps:
