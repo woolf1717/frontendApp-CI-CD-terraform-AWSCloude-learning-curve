@@ -17,8 +17,12 @@ runs:
       run: npm install --global vercel@canary
       shell: bash
 
-    - name: Install pnpm
-      run: npm install -g pnpm
+    - name: PROD Vercel Deployment
+      if: ${{ inputs.mode == 'production' }}
+      run: |
+        vercel pull --yes --environment=production --token=${{ inputs.vercel-token }}
+        vercel build --prod --token=${{ inputs.vercel-token }}
+        vercel deploy --prebuilt --prod --token=${{ inputs.vercel-token }}
       shell: bash
 
     - name: PREVIEW Vercel Deployment
