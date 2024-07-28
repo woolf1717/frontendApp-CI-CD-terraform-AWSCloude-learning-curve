@@ -25,7 +25,7 @@ runs:
       if: ${{ inputs.mode == 'production' }}
       run: |
         vercel pull --yes --environment=production --token=${{ inputs.vercel-token }}
-        vercel build --prod --token=${{ inputs.vercel-token }} --env VITE_ENVIRONMENT=${{ github.job.environment.name }}
+        vercel build --prod --token=${{ inputs.vercel-token }} --env VITE_ENVIRONMENT="Production"
         vercel deploy --prebuilt --prod --token=${{ inputs.vercel-token }}
       shell: bash
 
@@ -36,7 +36,7 @@ runs:
         vercel build --token=${{ inputs.vercel-token }}
         DEPLOY_OUTPUT="$(vercel deploy --token=${{ inputs.vercel-token }})"
         DEPLOY_URL=$(echo "$DEPLOY_OUTPUT" | grep http | tail -n 1)
-        VITE_ENVIRONMENT=${{ github.job.environment.name }}
+        VITE_ENVIRONMENT="Peview"
         echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
       shell: bash
 

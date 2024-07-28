@@ -2,9 +2,7 @@ import React from 'react';
 
 export const TechnicalComponent = () => {
   const appVersion = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : 'unknown';
-  const environment = import.meta.env.VITE_ENVIRONMENT
-    ? import.meta.env.VITE_ENVIRONMENT
-    : 'local-development';
+  const environment = import.meta.env.VITE_ENVIRONMENT;
 
   return (
     import.meta.env.VITE_ENVIRONMENT !== 'Production' && (
