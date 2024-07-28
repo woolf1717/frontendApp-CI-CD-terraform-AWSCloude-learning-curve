@@ -33,10 +33,10 @@ runs:
       if: ${{ inputs.mode == 'preview' }}
       run: |
         vercel pull --yes --environment=preview --token=${{ inputs.vercel-token }}
-        vercel build --token=${{ inputs.vercel-token }}
+        vercel build --token=${{ inputs.vercel-token }} --env VITE_ENVIRONMENT="Preview"
         DEPLOY_OUTPUT="$(vercel deploy --token=${{ inputs.vercel-token }})"
         DEPLOY_URL=$(echo "$DEPLOY_OUTPUT" | grep http | tail -n 1)
-        VITE_ENVIRONMENT="Peview"
+
         echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
       shell: bash
 
