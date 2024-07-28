@@ -1,5 +1,5 @@
 name: Deploy Vercel
-description: Deploy Vercel in three modes
+description: Deploy Vercel in two modes
 
 inputs:
   vercel-token:
@@ -25,16 +25,6 @@ runs:
         vercel deploy --prebuilt --prod --token=${{ inputs.vercel-token }}
       shell: bash
 
-    - name: STAGING Vercel Deployment
-      if: ${{ inputs.mode == 'staging' }}
-      run: |
-        vercel pull --yes --environment=preview --token=${{ inputs.vercel-token }}
-        vercel build --token=${{ inputs.vercel-token }}
-        DEPLOY_OUTPUT="$(vercel deploy --token=${{ inputs.vercel-token }})"
-        DEPLOY_URL=$(echo "$DEPLOY_OUTPUT" | grep http | tail -n 1)
-        echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
-      shell: bash
-
     - name: PREVIEW Vercel Deployment
       if: ${{ inputs.mode == 'preview' }}
       run: |
@@ -46,7 +36,7 @@ runs:
       shell: bash
 
     - name: Comment with preview URL
-      if: ${{ (inputs.mode == 'preview' || inputs.mode == 'staging') && github.event_name == 'pull_request' }}
+      if: ${{ inputs.mode == 'preview' }}
       uses: actions/github-script@v7
       with:
         script: |
@@ -57,9 +47,3 @@ runs:
             repo: context.repo.repo,
             body: `🔍 Preview URL: ${DEPLOY_URL}`
           });
-
-    - name: Output preview URL
-      if: ${{ inputs.mode == 'preview' || inputs.mode == 'staging' }}
-      run: |
-        echo "Preview URL: $DEPLOY_URL"
-      shell: bash
