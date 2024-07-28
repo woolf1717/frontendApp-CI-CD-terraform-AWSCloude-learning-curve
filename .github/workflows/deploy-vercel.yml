@@ -27,10 +27,10 @@ jobs:
         env:
           VITE_ENVIRONMENT: ${{ github.ref_name }}
 
-      - name: Deploy app to Vercel production env
+      - name: Deploy app to Vercel staging env
         uses: ./.github/actions/deploy-vercel
         with:
-          mode: 'production'
+          mode: 'staging'
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
