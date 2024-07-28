@@ -1,9 +1,7 @@
 name: Deploy - Netlify
 
 on:
-  push:
-    branches:
-      - development
+  workflow_call:
 
 jobs:
   deploy-netlify:
