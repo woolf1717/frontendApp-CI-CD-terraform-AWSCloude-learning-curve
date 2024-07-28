@@ -17,6 +17,10 @@ runs:
       run: npm install --global vercel@canary
       shell: bash
 
+    - name: Install pnpm
+      run: npm install -g pnpm
+      shell: bash
+
     - name: PROD Vercel Deployment
       if: ${{ inputs.mode == 'production' }}
       run: |
