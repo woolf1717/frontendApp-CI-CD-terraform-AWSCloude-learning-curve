@@ -1,10 +1,10 @@
-name: Deploy - Netlify
+name: Deploy - AWS
 
 on:
   workflow_call:
 
 jobs:
-  deploy-netlify:
+  deploy-aws:
     environment:
     name: 'Production'
     runs-on: ubuntu-latest
