@@ -20,8 +20,8 @@ jobs:
 
       - name: Sync images to S3
         run: |
-          aws s3 sync ./path-to-images s3://your-bucket-name --exclude "*" --include "*.jpg" --include "*.png"
+          aws s3 sync ./images s3://awsbucketwoolf2 --exclude "*" --include "*.jpg" --include "*.png"
 
       - name: Invalidate CloudFront cache
         run: |
-          aws cloudfront create-invalidation --distribution-id your-distribution-id --paths "/*"
+          aws cloudfront create-invalidation --distribution-id E1TETCGHYLA0PH --paths "/*"
