@@ -1,9 +1,15 @@
-import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+
 import { Character } from '../../lib/rick-and-morty-api-client';
+import React from 'react';
+import { useFlag } from '@featurevisor/react';
 
 const Characters = () => {
   const { characters } = useLoaderData() as { characters: Character[] };
+
+  const isPaginationEnabled = useFlag('characters-pagination', {
+    country: new URLSearchParams(window.location.search).get('country'),
+  });
 
   return (
     <div className="bg-white rounded-lg shadow-sm p-4" data-testid="characters-list">
@@ -24,6 +30,7 @@ const Characters = () => {
           </li>
         ))}
       </ul>
+      {isPaginationEnabled && <p>CHARAKTERS PAGINATION</p>}
     </div>
   );
 };

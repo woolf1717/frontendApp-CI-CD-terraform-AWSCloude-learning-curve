@@ -1,0 +1,19 @@
+
+> lambda-perf@1.0.0 build
+> ncc build index.ts -o dist && cd dist && powershell Compress-Archive index.js lambda.zip
+
+ncc: Version 0.38.1
+ncc: Compiling file index.js into CJS
+ncc: Using typescript@5.4.3 (local user-provided)
+917kB  dist\index.js
+917kB  [1955ms] - ncc 0.38.1
+Compress-Archive : The archive file C:\Users\user\Programowanie\OpanujFrontend\frontendApp\lib\lambda-p
+erf\dist\lambda.zip already exists. Use the -Update parameter to update the existing archive file or us
+e the -Force parameter to overwrite the existing archive file.
+At line:1 char:1
++ Compress-Archive index.js lambda.zip
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (C:\Users\user\P...dist\lambda.zip:String) [Compress-Ar 
+   chive], IOException
+    + FullyQualifiedErrorId : ArchiveFileExists,Compress-Archive
+ 
