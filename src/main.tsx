@@ -15,7 +15,7 @@ const CharacterDetails = lazy(() => import('./pages/CharacterDetails'));
 const envName = import.meta.env.VITE_ENV_NAME || 'preview';
 
 const featurevisor = createInstance({
-  datafileUrl: `http://d117yeepeezef7.cloudfront.net/datafiles/${envName}/datafile-tag-all.json`,
+  datafileUrl: `https://d2pflm47z830ag.cloudfront.net/datafiles/${envName}/datafile-tag-all.json`,
 });
 
 const router = createHashRouter([
