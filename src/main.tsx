@@ -13,6 +13,7 @@ const Characters = lazy(() => import('./pages/Characters'));
 const CharacterDetails = lazy(() => import('./pages/CharacterDetails'));
 
 const envName = import.meta.env.VITE_ENV_NAME || 'preview';
+
 const featurevisor = createInstance({
   datafileUrl: `http://d117yeepeezef7.cloudfront.net/datafiles/${envName}/datafile-tag-all.json`,
 });
