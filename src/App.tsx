@@ -5,7 +5,7 @@ import { useStatus } from '@featurevisor/react';
 
 const App = () => {
   const { isReady } = useStatus();
-  
+
   if (!isReady) return <div>Loading...</div>;
 
   return (
